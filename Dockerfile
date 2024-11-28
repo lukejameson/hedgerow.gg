@@ -21,7 +21,7 @@ COPY --from=builder /app/package*.json ./
 
 RUN npm ci --quiet --only=production
 
-ENV PORT=5002
+ENV PORT=5000
 ENV HOST=0.0.0.0
 ENV NODE_ENV=production
 

@@ -11,7 +11,7 @@ services:
       - 'traefik.http.routers.hedgerow-gg.rule=Host(`hedgerow.gg`)'
       - 'traefik.http.routers.hedgerow-gg.entrypoints=websecure'
       - 'traefik.http.routers.hedgerow-gg.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.hedgerow-gg.loadbalancer.server.port=5002'
+      - 'traefik.http.services.hedgerow-gg.loadbalancer.server.port=5000'
       - 'traefik.http.middlewares.security-headers.headers.frameDeny=true'
       - 'traefik.http.middlewares.security-headers.headers.sslRedirect=true'
       - 'traefik.http.middlewares.security-headers.headers.browserXssFilter=true'
