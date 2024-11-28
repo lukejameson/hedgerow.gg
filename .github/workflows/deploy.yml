@@ -40,6 +40,10 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/hedgerow-gg:latest
+          build-args: |
+            ENVIRONMENT=${{ env.ENVIRONMENT }}
+            DEV_USERNAME=${{ secrets.DEV_USERNAME }}
+            DEV_PASSWORD=${{ secrets.DEV_PASSWORD }}
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
