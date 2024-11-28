@@ -12,4 +12,5 @@
 		<div class="progress"></div>
 	</div>
 	<p>Expected completion: Coming Soon</p>
+
 </div>

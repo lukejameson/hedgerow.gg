@@ -9,6 +9,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+    env:
+      ENVIRONMENT: development
+      DEV_USERNAME: ${{ secrets.DEV_USERNAME }}
+      DEV_PASSWORD: ${{ secrets.DEV_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js
