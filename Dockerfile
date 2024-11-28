@@ -11,6 +11,15 @@ RUN npm ci --quiet && \
     npm install @rollup/rollup-linux-x64-gnu
 
 COPY . .
+
+ARG ENVIRONMENT
+ARG DEV_USERNAME
+ARG DEV_PASSWORD
+
+ENV ENVIRONMENT=${ENVIRONMENT}
+ENV DEV_USERNAME=${DEV_USERNAME}
+ENV DEV_PASSWORD=${DEV_PASSWORD}
+
 RUN npm run build
 
 FROM node:18-slim

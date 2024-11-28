@@ -27,18 +27,6 @@
 </div>
 
 <style>
-	h2 {
-		text-align: center;
-		color: #333;
-		margin-bottom: 0.5rem;
-	}
-
-	p {
-		text-align: center;
-		color: #666;
-		margin-bottom: 2rem;
-	}
-
 	.form-group {
 		margin-bottom: 1rem;
 	}

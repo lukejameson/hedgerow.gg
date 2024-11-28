@@ -1,4 +1,4 @@
-import { DEV_PASSWORD, DEV_USERNAME, ENVIRONMENT } from '$env/static/private';
+import { DEV_PASSWORD, DEV_USERNAME } from '$env/static/private';
 import { redirect } from '@sveltejs/kit';
 
 export const actions = {

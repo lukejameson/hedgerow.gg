@@ -3,7 +3,6 @@ services:
     build:
       context: .
     container_name: hedgerow-gg
-
     restart: unless-stopped
     labels:
       - 'traefik.enable=true'
