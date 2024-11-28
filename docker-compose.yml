@@ -1,0 +1,23 @@
+services:
+  sveltekit-app:
+    build:
+      context: .
+    container_name: hedgerow-gg
+
+    restart: unless-stopped
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=web'
+      - 'traefik.http.routers.hedgerow-gg.rule=Host(`hedgerow.gg`)'
+      - 'traefik.http.routers.hedgerow-gg.entrypoints=websecure'
+      - 'traefik.http.routers.hedgerow-gg.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.hedgerow-gg.loadbalancer.server.port=5002'
+      - 'traefik.http.middlewares.security-headers.headers.frameDeny=true'
+      - 'traefik.http.middlewares.security-headers.headers.sslRedirect=true'
+      - 'traefik.http.middlewares.security-headers.headers.browserXssFilter=true'
+      - 'traefik.http.routers.hedgerow-gg.middlewares=security-headers@docker'
+    networks:
+      - web
+networks:
+  web:
+    external: true
