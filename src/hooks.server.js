@@ -1,21 +1,22 @@
 import { ENVIRONMENT } from '$env/static/private';
+import { authConfig } from '$lib/server/auth';
+import { SvelteKitAuth } from '@auth/sveltekit';
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-    if (ENVIRONMENT === 'development') {
-        const isLoginPage = event.url.pathname === '/dev-login';
+	if (ENVIRONMENT === 'development') {
+		const isLoginPage = event.url.pathname === '/dev-login';
 
-        if (!isLoginPage && !event.url.pathname.startsWith('/dev-login-api')) {
-            const sessionCookie = event.cookies.get('dev_session');
-            if (!sessionCookie || sessionCookie !== 'authenticated') {
-                return new Response(null, {
-                    status: 302,
-                    headers: { Location: '/dev-login' }
-                });
-            }
-        }
-    }
-
+		if (!isLoginPage && !event.url.pathname.startsWith('/dev-login-api')) {
+			const sessionCookie = event.cookies.get('dev_session');
+			if (!sessionCookie || sessionCookie !== 'authenticated') {
+				return new Response(null, {
+					status: 302,
+					headers: { Location: '/dev-login' }
+				});
+			}
+		}
+	}
 
 	const response = await resolve(event);
 	const headers = new Headers(response.headers);
@@ -48,6 +49,7 @@ export async function handle({ event, resolve }) {
 		}
 	}
 
+	SvelteKitAuth(authConfig);
 
 	return new Response(response.body, {
 		status: response.status,
