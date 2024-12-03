@@ -1,14 +1,13 @@
 import { db } from "$lib/database";
 import { fail, redirect } from "@sveltejs/kit";
 import * as argon2 from "argon2";
+import type { PageServerLoad } from "./$types";
 
-enum Roles {
-  ADMIN = "ADMIN",
-  CUSTOMER = "CUSTOMER",
-  PRODUCER = "PRODUCER",
-}
-
-export const load = async () => {};
+export const load: PageServerLoad = async ({ locals }) => {
+  if (locals.user) {
+    redirect(302, "/");
+  }
+};
 
 const register = async ({ request }: { request: Request }) => {
   const data = await request.formData();
@@ -30,7 +29,7 @@ const register = async ({ request }: { request: Request }) => {
       email,
       passwordHash: await argon2.hash(password),
       userAuthToken: crypto.randomUUID(),
-      role: { connect: { name: Roles.CUSTOMER } },
+      role: "CUSTOMER",
     },
   });
 

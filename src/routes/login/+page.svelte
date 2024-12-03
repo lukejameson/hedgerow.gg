@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
+
   let { form } = $props();
 </script>
 
 <h1>Login</h1>
 
-<form action="?/login" method="POST">
+<form action="?/login" method="POST" use:enhance>
   <div>
     <label for="email">Email</label>
     <input type="email" id="email" name="email" required />

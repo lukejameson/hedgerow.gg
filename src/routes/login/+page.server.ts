@@ -2,9 +2,12 @@ import { fail, redirect } from "@sveltejs/kit";
 import * as argon2 from "argon2";
 
 import { db } from "$lib/database";
+import type { PageServerLoad } from "./$types";
 
-export const load = async () => {
-  // todo
+export const load: PageServerLoad = async ({ locals }) => {
+  if (locals.user) {
+    redirect(302, "/");PageServerLoad
+  }
 };
 
 const login = async ({ cookies, request }) => {
@@ -22,7 +25,7 @@ const login = async ({ cookies, request }) => {
     return fail(400, { email: true });
   }
 
-  const userPassword = await argon2.verify(password, user.passwordHash);
+  const userPassword = await argon2.verify(user.passwordHash, password);
 
   if (!userPassword) {
     return fail(400, { credentials: true });
