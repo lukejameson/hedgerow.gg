@@ -1,16 +1,2 @@
-<script>
-	import '../app.css';
-</script>
-
-<div class="container">
-	<div class="construction-icon">🚧</div>
-	<h1>Under Construction</h1>
-	<p>
-	 	Our site is currently under construction
-	</p>
-	<div class="progress-bar">
-		<div class="progress"></div>
-	</div>
-	<p>Expected completion: Coming Soon</p>
-
-</div>
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
